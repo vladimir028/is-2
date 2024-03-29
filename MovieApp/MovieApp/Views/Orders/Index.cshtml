@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>All Purchases for User: @ViewBag.User</h1>
+
+<p>
+    <a class="btn btn-success" asp-action="Create">Purchase Tickets</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Movie Name
+            </th>
+            <th>
+                Ticket Price
+            </th>
+            <th></th>
+            <th>
+                Total Amount
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.Purchases)
+        {
+            <tr>
+                <td>
+                    @item.Ticket.Movie.MovieName
+                </td>
+                <td>
+                    @item.Ticket.Price
+                </td>
+                <td>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                @ViewBag.TotalSum
+            </td>
+        </tr>
+    </tbody>
+</table>
